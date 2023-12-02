@@ -1,0 +1,34 @@
+{
+  "name": "Bomb Defuser",
+  "description": "Defuse the bomb, win the game",
+  "version": "0.1.0",
+  "manifest_version": 3,
+  "icons": { "16": "icon16.png", "48": "icon48.png", "128": "icon128.png" },
+  "action": { "default_popup": "popup.html", "default_icon": {} },
+  "permissions": ["tabs", "activeTab", "scripting", "webNavigation"],
+  "host_permissions": ["https://*.jklm.fun/*", "https://jklm.fun/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://jklm.fun/*", "https://*.jklm.fun/*"],
+      "run_at": "document_end",
+      "js": ["contentScript.js"],
+      "css": ["contentScript.css"],
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icon128.png",
+        "icon16.png",
+        "icon48.png",
+        "syllableControl.js",
+        "./words.js"
+      ],
+      "matches": ["https://jklm.fun/*", "https://*.jklm.fun/*"]
+    }
+  ]
+}
